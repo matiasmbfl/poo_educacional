@@ -1,0 +1,59 @@
+class Persona:
+    def __init__(self, nombrePersona, edad):
+        self.nombre = nombrePersona
+        self.edad = edad
+
+class Profesor(Persona):
+    def __init__(self, nombrePersona, edad, especialidad): 
+        super().__init__(nombrePersona, edad) # datos heredados 
+        self.especialidad = especialidad   #nuevos datos para la clase
+        self.nombrePersona = nombrePersona
+
+class Universidad:
+    def __init__(self, nombreUniversidad, sede, direccion):
+        self.nombreUniversidad = nombreUniversidad
+        self.sede = sede
+        self.direccion = direccion
+
+class Carrera(Universidad):
+    def __init__(self, nombreCarrera, nombreUniversidad, cantidadEstudiantes, cantidadCursos, asignaturas):
+        self.nombreCarrera = nombreCarrera
+        self.nombreUniversidad = nombreUniversidad
+        self.cantidadEstudiantes = cantidadEstudiantes
+        self.cantidadCursos = cantidadCursos
+        self.asignaturas = asignaturas
+
+class Estudiante(Persona, Carrera):
+    def __init__(self, nombrePersona, edad, nombreCarrera):
+        super().__init__(nombrePersona, edad)
+        self.nombreCarrera = nombreCarrera
+        
+def mostrar_datos_estudiante(estudiante):
+        print(f"\nNombre del estudiante: {estudiante.nombre}, edad {estudiante.edad} carrera del estudiante {estudiante.nombreCarrera}")
+        print(f"Estudia en: {universidad1.nombreUniversidad}, sede {universidad1.sede} ")
+        print(f"Esta asignado en la clase {clase1.nombreAsignatura} con el profesor {profesor1.nombrePersona} en el horario {clase1.horario} en la sala {clase1.sala} \n")
+
+class Asignatura:
+    def __init__(self, nombreAsignatura, duracion):
+        self.nombreAsignatura = nombreAsignatura
+        self.duracion = duracion
+
+class Clase(Asignatura, Profesor):
+    def __init__(self, nombreAsignatura, nombrePersona, id_clase, horario, sala):
+        super().__init__(nombreAsignatura, nombrePersona)
+        self.id_clase = id_clase
+        self.horario = horario
+        self.sala = sala
+
+#Debe Estar ordenado en jerarquia de clases
+universidad1 = Universidad("U Andres bello", "sede Macul", "vicuña ")
+carrera1 = Carrera("Informatica", universidad1.nombreUniversidad, 200, 5, 10)
+estudiante1 = Estudiante("Matias", 26, carrera1.nombreCarrera)
+profesor1 = Profesor("Pedro Lizana", 40, "matematicas")
+asignatura1 = Asignatura("Matematica 1", "90 horas")
+asignatura2 = Asignatura("phyton 1", "95 horas")
+clase1 = Clase("Mate 1", profesor1.nombrePersona, 100, "miercoles 10:00am ", 301)
+
+
+mostrar_datos_estudiante(estudiante1)
+
