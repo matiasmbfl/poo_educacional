@@ -16,18 +16,23 @@ class Universidad:
         self.direccion = direccion
 
 class Carrera(Universidad):
-    def __init__(self, nombreCarrera, nombreUniversidad, cantidadEstudiantes, cantidadCursos, asignaturas):
+    def __init__(self, nombreCarrera, nombreUniversidad, cantidadEstudiantes, cantidadCursos, asignaturas, duracion):
         self.nombreCarrera = nombreCarrera
         self.nombreUniversidad = nombreUniversidad
         self.cantidadEstudiantes = cantidadEstudiantes
         self.cantidadCursos = cantidadCursos
         self.asignaturas = asignaturas
+        self.duracion = duracion
+
+def mostrar_datos_carrera(carrera):
+        print(f"La carrera: {carrera.nombreCarrera} Pertenece a la Institucion: {carrera.nombreUniversidad}")
+        print(f"Tiene {carrera.cantidadCursos} Cursos {carrera.cantidadEstudiantes} Estudiantes y {carrera.asignaturas} Asignaturas y {carrera.duracion} de duracion \n")
 
 class Estudiante(Persona, Carrera):
     def __init__(self, nombrePersona, edad, nombreCarrera):
         super().__init__(nombrePersona, edad)
         self.nombreCarrera = nombreCarrera
-        
+
 def mostrar_datos_estudiante(estudiante):
         print(f"\nNombre del estudiante: {estudiante.nombre}, edad {estudiante.edad} carrera del estudiante {estudiante.nombreCarrera}")
         print(f"Estudia en: {universidad1.nombreUniversidad}, sede {universidad1.sede} ")
@@ -42,18 +47,18 @@ class Clase(Asignatura, Profesor):
     def __init__(self, nombreAsignatura, nombrePersona, id_clase, horario, sala):
         super().__init__(nombreAsignatura, nombrePersona)
         self.id_clase = id_clase
-        self.horario = horario
+        self.horario = horario 
         self.sala = sala
 
 #Debe Estar ordenado en jerarquia de clases
 universidad1 = Universidad("U Andres bello", "sede Macul", "vicuña ")
-carrera1 = Carrera("Informatica", universidad1.nombreUniversidad, 200, 5, 10)
+carrera1 = Carrera("Informatica", universidad1.nombreUniversidad, 200, 5, 10, "6 semestres")
 estudiante1 = Estudiante("Matias", 26, carrera1.nombreCarrera)
 profesor1 = Profesor("Pedro Lizana", 40, "matematicas")
 asignatura1 = Asignatura("Matematica 1", "90 horas")
 asignatura2 = Asignatura("phyton 1", "95 horas")
 clase1 = Clase("Mate 1", profesor1.nombrePersona, 100, "miercoles 10:00am ", 301)
 
-
 mostrar_datos_estudiante(estudiante1)
+mostrar_datos_carrera(carrera1)
 
